@@ -1,0 +1,35 @@
+<%- include('./partials/publicHeader') %>
+
+<div class="container-flex mt-5 pt-4 mx-3">
+    <button class="btn-lg btn-primary" type="button" onclick="location.href='/public/<%= id %>'">Back</button>
+</div>
+<hr class="">
+<ul id="list" class="list-group list-group-flush mx-4" style="overflow-y: scroll; max-height: 400px;">
+<% reviews.forEach(review => { %>
+    <li class="list-group-item">
+        <h6><%= review.author %></h6>
+        <h5>
+            <% for (let i = 0; i < review.rating; i++) { %>
+                    ★
+            <% } %> 
+        </h5>
+        <p class="mt-4 mb-4"><%= review.comment %></p>
+    </li>
+<% }) %>
+</ul>
+<hr class="mt-3">
+<div class="container-flex mt-2">
+    <button class="btn-lg btn-primary mt-3 mx-3" type="button" onclick="location.href='/public/<%= id %>/reviews/add'">Add Review</button>
+</div>
+<script>
+    const field = document.getElementById('list')
+
+    field.scrollTop = field.scrollHeight;
+
+    const child = field.childElementCount;
+    if (child === 0) {
+        field.innerHTML = '<li class="list-group-item"># No reviews to diplay #</li>';
+    }
+</script>
+
+<%- include('./partials/footer') %>

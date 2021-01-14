@@ -1,0 +1,75 @@
+<%- include('./partials/publicHeader') %>
+
+<div class="container-flex mt-5 pt-4 mx-3">
+    <button class="btn-lg btn-primary" type="button" onclick="location.href='/public/<%= id %>'">Back</button>
+</div>
+<hr class="my-4">
+
+<div class="container container-fluid w-50 mx-auto">
+    <div class="container text-center mx-3">
+        <h5 class="card-title text-center mt-5">Add Review</h5><br>
+        <form id="addReviewForm" method="post">
+            <div class="form-group">
+                <label for="author">Name:</label>
+                <input type="text" class="form-control mt-3" name="author" id="author" maxlength="50" placeholder="Name" required>
+            </div>
+            <p class="mt-4">Rating:</p>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="rating" id="inlineRadio1" value="1" required>
+                <label class="form-check-label" for="inlineRadio1">1</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="rating" id="inlineRadio2" value="2">
+                <label class="form-check-label" for="inlineRadio2">2</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="rating" id="inlineRadio1" value="3">
+                <label class="form-check-label" for="inlineRadio1">3</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="rating" id="inlineRadio2" value="4">
+                <label class="form-check-label" for="inlineRadio2">4</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="rating" id="inlineRadio2" value="5">
+                <label class="form-check-label" for="inlineRadio2">5</label>
+            </div>
+            <div class="form-group mt-4">
+                <label for="comment">Review:</label>
+                <textarea class="form-control mt-3" name="comment" id="comment" rows="4" required maxlength="1000"></textarea>
+            </div>
+            <button class="btn btn-lg btn-dark btn-block text-uppercase mt-5" type="submit" name="submit">Add Review</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById('addReviewForm');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        let rating = 0;
+        Array.from(document.getElementsByName('rating')).forEach(radio => {
+            if (radio.checked) {
+                rating = Number(radio.value);
+            }
+        });
+        let author = document.getElementById('author').value.trim();
+        let comment = document.getElementById('comment').value.trim();
+        const review = {author, comment, rating};
+        console.log(review);
+        try {
+            const res = await fetch(window.location.href, {
+            method: 'POST',
+            body: JSON.stringify(review),
+            headers: {'Content-Type':'application/json'}
+            }); 
+            alert('Review was successfuly added');
+            window.location.href = '/public/<%= id %>/reviews';
+        } catch {
+            alert('error occured during adding review, please try again later');
+        }
+    });
+</script>
+
+<%- include('./partials/footer') %>
