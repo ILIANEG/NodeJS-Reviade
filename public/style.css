@@ -1,0 +1,9 @@
+.deleteLink {
+    color: #267DFD;
+    text-decoration: underline;
+}
+
+.deleteLink:hover {
+    color: #005de7;
+    cursor: pointer;;
+}

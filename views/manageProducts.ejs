@@ -1,0 +1,48 @@
+<%- include('./partials/authHeader') %>
+
+<div class="container-fluid mt-5">
+    <table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Display</th>
+            <th scope="col">Handle</th>
+        </tr>
+    </thead>
+    <tbody>   
+    <% for (let i = 0; i < products.length; i++) { %>
+        <tr>
+            <th scope="row"><%- i + 1 %></th>
+            <td><%- products[i].productName %></td>
+            <td>
+                <a href='/reviews/<%- products[i].id %>'>Reviews</a><br>
+                <a href='/feedback/<%- products[i].id %>'>Feedback</a>
+            </td>
+            <td>
+                <span class="deleteLink" id='<%- products[i].id %>'>Delete</span><br>
+                <a href='/products/edit/<%- products[i].id %>'>Edit</a><br>
+                <a href='/products/displayqr/<%- products[i].id %>'>QR</a>
+            </td>
+        </tr>
+    <% } %>
+    </tbody>
+    </table>
+</div>
+<script>
+    const table = document.querySelector('tbody');
+    table.addEventListener('click', async (e) => {
+        if (e.target.getAttribute('class') === 'deleteLink') {
+            const id = e.target.getAttribute('id');
+            const res = await fetch ('/products/delete', 
+            {
+                method: 'DELETE',
+                body: JSON.stringify({id}),
+                headers: {'Content-Type':'application/json'}
+            });
+            window.location.href = '/products'
+        } 
+    });
+</script>
+
+<%- include('./partials/footer') %>
