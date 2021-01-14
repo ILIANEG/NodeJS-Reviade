@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 //specify static content
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 
 //specify view engine
 app.set('view engine', 'ejs');

@@ -66,8 +66,8 @@ module.exports.products_edit_post = async (req, res) => {
     const id = req.params.id;
     const { productName, productDescription } = req.body;
     try {
-        await Product.findByIdAndUpdate(id,{productName: productName, productDescription: productDescription});
-        console.status(201);
+        await Product.findByIdAndUpdate(id,{productName : productName, productDescription : productDescription});
+        console.status(201).json({message: 'success'});
     } catch {
         res.status(400);
     }

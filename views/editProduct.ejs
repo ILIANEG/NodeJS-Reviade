@@ -17,27 +17,25 @@
 
 <script>
     
-const form = document.getElementById('addProductForm');
-form.addEventListener('submit', async (e) => {
-    console.log('here1');
-    e.preventDefault();
-    const productName = document.getElementById('productName').value;
-    const productDescription = document.getElementById('description').value;
-    console.log('here2');
-    try {
-        const res = await fetch(window.location.href,
-        {method:'POST', 
-        body: JSON.stringify({productName, productDescription}),
-        headers:{'Content-Type':'application/json'}
-        });
-        window.location.replace('/products');
-
-    } catch {
-        alert('error happened during adding product, try again');
-        window.location.replace('/products/add');
-    }
-});
-
-</script>
+    
+    const form = document.getElementById('addProductForm');
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const productName = document.getElementById('productName').value;
+        const productDescription = document.getElementById('description').value;
+        try {
+            const res = await fetch(window.location.href,
+            {method:'POST', 
+            body: JSON.stringify({productName, productDescription}),
+            });
+            window.location.replace('/products');
+    
+        } catch {
+            alert('error happened during adding product, try again');
+            window.location.replace('/products');
+        }
+    });
+    
+    </script>
 
 <%- include('./partials/footer') %>
