@@ -5,11 +5,11 @@
     <form method="post" id="addProductForm">
         <div class="form-group">
             <label for="productName">Product Name</label>
-            <input type="text" class="form-control" name="productName" id="productName" maxlength="100" placeholder="Name" value="<%- name %>" required>
+            <input type="text" class="form-control" name="productName" id="productName" maxlength="100" placeholder="Name" value="<%= name %>" required>
         </div>
         <div class="form-group">
             <label for="description">Product Description</label>
-            <textarea class="form-control" name="description" id="description" rows="3" required maxlength="1000"><%- description %></textarea><br>
+            <textarea class="form-control" name="description" id="description" rows="3" required maxlength="1000"><%= description %></textarea><br>
         </div>
         <button class="btn btn-lg btn-dark btn-block text-uppercase" type="submit" name="submit">Edit Product</button>
     </form>
@@ -19,28 +19,25 @@
     
 const form = document.getElementById('addProductForm');
 form.addEventListener('submit', async (e) => {
+    console.log('here1');
     e.preventDefault();
     const productName = document.getElementById('productName').value;
     const productDescription = document.getElementById('description').value;
+    console.log('here2');
     try {
         const res = await fetch(window.location.href,
         {method:'POST', 
         body: JSON.stringify({productName, productDescription}),
         headers:{'Content-Type':'application/json'}
         });
-        const data = await res.json();
-        if  (data) {
-            window.location.replace('/products');
-        } else {
-            alert('error happened during editing product, try again');
-            window.location.replace('/products/add');
-        }
+        window.location.replace('/products');
 
     } catch {
         alert('error happened during adding product, try again');
         window.location.replace('/products/add');
     }
 });
+
 </script>
 
 <%- include('./partials/footer') %>

@@ -56,22 +56,18 @@ module.exports.products_edit_get = async (req, res) => {
     const id = req.params.id;
     try {
         const product = await Product.findById(id);
-        res.status(201).render('editProduct', {
-            title: 'Edit Product', 
-            name: product.productName, 
-            description: product.productDescription});
+        res.status(201).render('editProduct', { title: 'Edit Product', name: product.productName, description: product.productDescription });
     } catch {
         res.status(400);
     }
-    
 }
 
 module.exports.products_edit_post = async (req, res) => {
     const id = req.params.id;
     const { productName, productDescription } = req.body;
     try {
-        await Product.findByIdAndUpdate(id,{productName: productName});
-        res.status(201).json({ message:'success' });
+        await Product.findByIdAndUpdate(id,{productName: productName, productDescription: productDescription});
+        console.status(201);
     } catch {
         res.status(400);
     }

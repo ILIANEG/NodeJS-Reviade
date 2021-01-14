@@ -23,7 +23,7 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 //Connect to the server
-const dbURL = '';
+const dbURL = 'mongodb+srv://illia:3244Ilija89@cluster0.yl2os.mongodb.net/reviade?retryWrites=true&w=majority';
 mongoose.connect(dbURL).then(app.listen(3000)).catch((error) => {
     console.log(error);
 });
