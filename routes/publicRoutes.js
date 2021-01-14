@@ -8,13 +8,13 @@ const router = require('./ownerRoutes');
 router.get('/public/:id', publicController.menu_get);
 
 //Public comments acccess route
-router.get('/public/:id/comments', publicController.comments_get);
+router.get('/public/:id/reviews', publicController.reviews_get);
 
 //Public write comment form
-router.get('/public/:id/comments/add', publicController.new_comment_get);
+router.get('/public/:id/reviews/add', publicController.new_review_get);
 
 //Public add coment (submit form)
-router.post('/public/:id/comments/add', publicController.new_comment_post);
+router.post('/public/:id/reviews/add', publicController.new_review_post);
 
 //Public feedback form access route
 router.get('/public/:id/feedback', publicController.feedback_get);

@@ -1,11 +1,17 @@
-<%- include('./partials/authHeader') %>
-<div class="container justify-content-center col-4"></div>
-    <h5 class="card-title text-center my-5 pt-5"><% productName %></h5>
-    <div class="form-label-group">
-        <button class="btn btn-lg btn-dark btn-block text-uppercase" type="button" onclick="location.href='/reviews'">Reviews</button>
-    </div>
-    <div class="form-label-group mt-5">
-        <button class="btn btn-lg btn-dark btn-block text-uppercase" type="button" onclick="location.href='/feedback'">Feedback</button>
+<%- include('./partials/publicHeader') %>
+<div class="container mt-5 pt-5">
+    <div class="jumbotron">
+        <h1 class="display-4">We want to hear your opinion</h1>
+        <p class="lead">Select how you will give your opinion about product or service</p>
+        <hr class="my-4">
+        <p>Review is public opinion, visible to other people who will scan the QR, feedback is visible only to product/service owner</p>
+        <p class="lead">
+          <a class="btn btn-primary btn-lg" href="/public/<%= id %>/reviews" role="button">Reviews</a>
+        </p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="/public/<%= id %>/feedback" role="button">Feedback</a>
+          </p>
+      </div>
 </div>
 
 <%- include('./partials/footer') %>
