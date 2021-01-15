@@ -1,4 +1,4 @@
-const { Product } = require('../models/Product');
+const { Product, Comment, Feedback } = require('../models/Product');
 const jwt = require('jsonwebtoken');
 const { currentUserId } = require('../middleware/authentificator');
 const User = require('../models/User');
@@ -39,7 +39,15 @@ module.exports.products_add_post = async (req, res) => {
 module.exports.products_delete = async (req, res) => {
     const id = req.body.id;
     try {
-        await Product.findByIdAndDelete(id);
+        const product = await Product.findById(id);
+        product.comments.forEach(async (comment) => {
+            try {
+                await Comment.deleteOne({_id:comment}); 
+            } catch (error) {
+                console.log(error);
+            }
+        });
+        await product.remove();
         const currentUser = await User.findById(currentUserId(req));
         currentProducts = currentUser.products;
         const newProducts = currentProducts.filter(product => {

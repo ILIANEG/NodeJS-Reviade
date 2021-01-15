@@ -57,7 +57,6 @@
         let author = document.getElementById('author').value.trim();
         let comment = document.getElementById('comment').value.trim();
         const review = {author, comment, rating};
-        console.log(review);
         try {
             const res = await fetch(window.location.href, {
             method: 'POST',

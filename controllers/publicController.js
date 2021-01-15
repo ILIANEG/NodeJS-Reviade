@@ -20,7 +20,6 @@ module.exports.new_review_get = async (req, res) => {
 
 module.exports.new_review_post = async (req, res) => {
     const id = req.params.id;
-    console.log(req.body);
     const review = req.body;
     const newComment = await Comment.create(review);
     const product = await Product.findById(id);
