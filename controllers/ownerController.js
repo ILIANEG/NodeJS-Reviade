@@ -47,6 +47,13 @@ module.exports.products_delete = async (req, res) => {
                 console.log(error);
             }
         });
+        product.feedbacks.forEach(async (feedback) => {
+            try {
+                await Feedback.deleteOne({_id:feedback}); 
+            } catch (error) {
+                console.log(error);
+            }
+        });
         await product.remove();
         const currentUser = await User.findById(currentUserId(req));
         currentProducts = currentUser.products;
@@ -78,6 +85,16 @@ module.exports.products_edit_post = async (req, res) => {
         res.status(201).json({message:'success'});
     } catch {
         res.status(400);
+    }
+}
+
+module.exports.products_get_feedback = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const product = await Product.findById(id).populate('feedbacks');
+        res.status(200).render('viewFeedback', {id: id, title: 'Feedbacks', feedbacks: product.feedbacks});
+    } catch (error) {
+        console.log(error);
     }
 }
 

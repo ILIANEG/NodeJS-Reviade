@@ -30,7 +30,11 @@ router.get('/products/edit/:id', requireAuth, ownerController.products_edit_get)
 //Edit product form submit route
 router.post('/products/edit/:id', requireAuth, ownerController.products_edit_post);
 
+//Get QR picture route
 router.get('/products/displayqr/:id', requireAuth, ownerController.products_qrcode_get);
+
+//Get feedbacks route
+router.get('/products/feedback/:id', requireAuth, ownerController.products_get_feedback);
 
 //Export router
 module.exports = router;

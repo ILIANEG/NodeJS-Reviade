@@ -30,10 +30,16 @@ module.exports.new_review_post = async (req, res) => {
 
 module.exports.feedback_get = async (req, res) => {
     const id = req.params.id;
-    res.send('feedback add form');
+    res.status(200).render('addFeedback', {title:'Add Review', id:id});
 }
 
 module.exports.feedback_post = async (req, res) => {
     const id = req.params.id;
-    res.send('feedback post form')
+    const feedback = req.body;
+    const newFeedback = await Feedback.create(feedback);
+    const product = await Product.findById(id);
+    product.feedbacks.push(newFeedback.id);
+    await product.save();
+    res.status(201).json({message:'success'});
+    
 }

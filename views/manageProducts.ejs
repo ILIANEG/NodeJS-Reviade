@@ -16,8 +16,8 @@
             <th scope="row"><%- i + 1 %></th>
             <td><%- products[i].productName %></td>
             <td>
-                <a href='/reviews/<%- products[i].id %>'>Reviews</a><br>
-                <a href='/feedback/<%- products[i].id %>'>Feedback</a>
+                <a href='/public/<%- products[i].id %>/reviews'>Reviews</a><br>
+                <a href='/products/feedback/<%- products[i].id %>'>Feedback</a>
             </td>
             <td>
                 <span class="deleteLink" id='<%- products[i].id %>'>Delete</span><br>

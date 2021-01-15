@@ -1,0 +1,21 @@
+<%- include('./partials/authHeader') %>
+<div class="mx-3">
+    <h6 class="mt-5 pt-5">Feedback</h6>
+    <hr>
+    <ul id="list" class="list-group list-group-flush mx-4" style="overflow-y: scroll; max-height: 400px;">
+    <% feedbacks.forEach(feedback => { %>
+        <li class="list-group-item">
+            <h6><%= feedback.author %></h6>
+            <p class="mt-4 mb-4"><%= feedback.comment %></p>
+        </li>
+    <% }) %>
+    </ul>
+    <hr class="mt-3">
+</div>
+<script>
+const field = document.getElementById('list')
+
+field.scrollTop = field.scrollHeight;
+</script>
+
+<%- include('./partials/footer') %>
