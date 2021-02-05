@@ -2,6 +2,6 @@
 
 Project is in progress.
 
-- Recreation of my old project Reviade in NodeJS with ExpressJs framework
-- This time I have followed MVC pattern (model view controller separated)
-- I am working to implement this web application with RESTful API in mind, there are still couple changes that has to be done to consistantly adhere to this architecture
+- Recreation of my old project Reviade in NodeJS with Express framework
+- The main objective of this project is to create minimalistic digital comment book, with strong emphasis on back-end development, using latest database technology (No SQL mongo DB) and JWT token technology for user authentification. Previously project was implemented with SQLite and classic session-based authentification
+- This web application with RESTful API in mind. Endpoints can be simply conected and used with this web application.
